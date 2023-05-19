@@ -37,7 +37,7 @@ export default function ChatGPT() {
   return (
     <div className="bg-white p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2">
       {" "}
-      <h1 className="font-bold text-3xl text-center">ChatGPT API</h1>
+      <h1 className="font-bold text-3xl text-center">Evaluar Oraciones de CV</h1>
       <form className="bg-white p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="">Oracion a Evaluar </label>

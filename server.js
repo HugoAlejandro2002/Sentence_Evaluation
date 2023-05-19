@@ -10,7 +10,7 @@ import { Configuration, OpenAIApi } from "openai";
 
 
 const config = new Configuration({
-  apiKey: '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',
+  apiKey: '',
 });
 
 const { json } = bodyParser;
