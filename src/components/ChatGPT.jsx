@@ -60,8 +60,8 @@ export default function ChatGPT() {
         </button>
       </form>
       <div className="bg-white p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2">
-        <p className="text-light">
-          {response ? response : "Aqui va tu evaluacion"}
+        <p className="text-light whitespace-pre-line">
+          {response ? response : "Aqui va tu evaluacion\nBola"}
         </p>
       </div>
     </div>
