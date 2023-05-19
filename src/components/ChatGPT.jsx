@@ -11,6 +11,7 @@ export default function ChatGPT() {
 
     const API_URL = "https://api.openai.com/v1/completions";
     const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
+    
     try {
       const res = await axios.post(
         API_URL,
