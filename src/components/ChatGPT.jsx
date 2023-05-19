@@ -11,7 +11,7 @@ export default function ChatGPT() {
 
     const API_URL = "https://api.openai.com/v1/completions";
     const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
-    
+
     try {
       const res = await axios.post(
         API_URL,
@@ -45,7 +45,7 @@ export default function ChatGPT() {
           <input
             className="border-2 w-full mt-2 p-1 rounded-md"
             type="text"
-            placeholder="Enter your sentence"
+            placeholder="Ingresa tu Oracion"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
@@ -61,7 +61,7 @@ export default function ChatGPT() {
       </form>
       <div className="bg-white p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2">
         <p className="text-light">
-          {response ? response : "Ask me anything..."}
+          {response ? response : "Aqui va tu evaluacion"}
         </p>
       </div>
     </div>
