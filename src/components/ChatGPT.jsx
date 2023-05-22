@@ -4,10 +4,14 @@ import axios from "axios";
 export default function ChatGPT() {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
+
 
     const API_URL = "https://api.openai.com/v1/completions";
     const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
@@ -29,9 +33,11 @@ export default function ChatGPT() {
         }
       );
       await delay(1000);
-      setResponse(res.data.choices[0].text.trim().replace('\n\n','\n').replace('\n','\n\n'));
+      setResponse(res.data.choices[0].text.trim().replace('\n\n', '\n').replace('\n', '\n\n'));
     } catch (err) {
       console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -50,19 +56,21 @@ export default function ChatGPT() {
             onChange={(e) => setPrompt(e.target.value)}
           />
         </div>{" "}
-        <button className="bg-indigo-500
-          cursor-pointer 
-          uppercase 
-          p-3 
-          text-white 
-          rounded-lg mt-5 hover:bg-indigo-700" type="submit">
+        <button className={`bg-indigo-500 cursor-pointer uppercase p-3 text-white rounded-lg mt-5 hover:bg-indigo-700 ${isLoading ? "opacity-50 pointer-events-none cursor-not-allowed" : ""}`}
+          type="submit"
+          disabled={isLoading}
+        >
           Evaluar
         </button>
       </form>
       <div className="bg-white p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2">
-        <p className="text-light whitespace-pre-line">
-          {response ? response : "Aqui va tu evaluacion"}
-        </p>
+        {isLoading ? (
+          <p className="text-light">Cargando...</p>
+        ) : (
+          <p className="text-light whitespace-pre-line">
+            {response ? response : "Aquí va tu evaluación"}
+          </p>
+        )}
       </div>
     </div>
   );
