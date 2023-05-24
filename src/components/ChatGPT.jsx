@@ -52,14 +52,14 @@ export default function ChatGPT() {
             type="text"
             placeholder="Ingresa tu Oración"
             value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
+            onChange={(e) => {setPrompt(e.target.value)}}
           />
         </div>
         <button
-          className={`bg-indigo-500 cursor-pointer uppercase p-3 text-white rounded-lg mt-5 hover:bg-indigo-700 ${isLoading ? "opacity-50 pointer-events-none cursor-not-allowed" : ""
+          className={`bg-indigo-500 cursor-pointer uppercase p-3 text-white rounded-lg mt-5 hover:bg-indigo-700 ${(isLoading ||prompt.trim().length === 0) ? "opacity-50 pointer-events-none cursor-not-allowed" : ""
             }`}
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || (prompt.trim().length === 0)}
         >
           Evaluar
         </button>
