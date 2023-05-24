@@ -42,28 +42,29 @@ export default function ChatGPT() {
   };
 
   return (
-    <div className="bg-white p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2">
-      {" "}
+    <div className="bg-white p-4 md:p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2">
       <h1 className="font-bold text-3xl text-center">Evaluar Oraciones de CV</h1>
-      <form className="bg-white p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2" onSubmit={handleSubmit}>
+      <form className="bg-white p-4 md:p-10 rounded-lg shadow-lg mt-2" onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="">Oracion a Evaluar </label>
+          <label htmlFor="">Oración a Evaluar</label>
           <input
-            className="border-2 w-full mt-2 p-1 rounded-md"
+            className="border-2 w-full mt-2 p-1 rounded-md whitespace-normal break-words"
             type="text"
-            placeholder="Ingresa tu Oracion"
+            placeholder="Ingresa tu Oración"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-        </div>{" "}
-        <button className={`bg-indigo-500 cursor-pointer uppercase p-3 text-white rounded-lg mt-5 hover:bg-indigo-700 ${isLoading ? "opacity-50 pointer-events-none cursor-not-allowed" : ""}`}
+        </div>
+        <button
+          className={`bg-indigo-500 cursor-pointer uppercase p-3 text-white rounded-lg mt-5 hover:bg-indigo-700 ${isLoading ? "opacity-50 pointer-events-none cursor-not-allowed" : ""
+            }`}
           type="submit"
           disabled={isLoading}
         >
           Evaluar
         </button>
       </form>
-      <div className="bg-white p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2">
+      <div className="bg-white p-4 md:p-10 rounded-lg shadow-lg mt-2">
         {isLoading ? (
           <p className="text-light">Cargando...</p>
         ) : (
