@@ -132,7 +132,7 @@ export default function ChatGPT() {
           <p className="text-light">Cargando...</p>
         ) : (
           <>
-            <h2 className="text-3xl text-center mb-5" >Consejos:</h2>
+            {(finResponse && !isLoading) &&  <h2 className="text-3xl text-center mb-5" >Consejos:</h2>}
             <p className="text-light whitespace-pre-line">
               {response ? response : "Aquí va tu evaluación"}
             </p>
