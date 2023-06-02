@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Evaluation } from "./Evaluation";
+import { getAuth, signOut } from 'firebase/auth';
+import { firebaseapp } from '../services/firebase';
 
-export default function ChatGPT() {
+export default function ChatGPT({ user }) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -98,9 +100,21 @@ export default function ChatGPT() {
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+  const handleLogout = async () => {
+    try {
+      const auth = getAuth(firebaseapp);
+      await signOut(auth);
+      setEvaluation('')
+      setPrompt('')
+      setResponse('')
+    } catch (error) {
+      console.log('Error al cerrar sesión:', error);
+    }
+  };
+
   return (
     <div className="bg-white p-4 md:p-10 rounded-lg shadow-lg ml-10 mr-5 mt-2">
-      
+
       <form className="bg-white p-4 md:p-10 rounded-lg shadow-lg mt-2" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="">Oración a Evaluar</label>
@@ -129,13 +143,20 @@ export default function ChatGPT() {
           <p className="text-light">Cargando...</p>
         ) : (
           <>
-            {(finResponse && !isLoading) &&  <h2 className="text-3xl text-center mb-5" >Consejos:</h2>}
+            {(finResponse && !isLoading) && <h2 className="text-3xl text-center mb-5" >Consejos:</h2>}
             <p className="text-light whitespace-pre-line">
               {response ? response : "Aquí va tu evaluación"}
             </p>
           </>
         )}
       </div>
+
+      <button
+        className="bg-red-500 cursor-pointer uppercase p-3 text-white rounded-lg mt-5 hover:bg-red-700"
+        onClick={handleLogout}
+      >
+        Cerrar sesión
+      </button>
     </div>
   );
 }
